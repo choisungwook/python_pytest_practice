@@ -1,0 +1,17 @@
+pipeline {
+    agent none
+    stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'python:3.9.13'
+                }
+            }
+            steps {
+                sh 'pip install -r requirements.txt'
+                sh 'python -m pytest --cov-report term --cov=./ tests/'
+                stash(name: 'compiled-results', includes: '*.py*')
+            }
+        }
+    }
+}
