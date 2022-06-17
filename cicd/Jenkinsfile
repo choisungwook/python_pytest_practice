@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'ls'
                 sh """
                     docker run --rm \
                     -v /mnt/data/jenkins/workspace/$JOB_NAME:/tmp/$JOB_BASE_NAME \
@@ -14,4 +13,9 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            junit './reports/*.xml'
+        }
+   }
 }

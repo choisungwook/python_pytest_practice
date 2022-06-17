@@ -2,4 +2,5 @@
 set -e
 
 pip install -r requirements.txt
-python -m pytest --cov-report term --cov=./ tests/
+mkdir -p reports
+python -m pytest --cov-report term --cov=./ tests/ --junitxml=./reports/report.xml
