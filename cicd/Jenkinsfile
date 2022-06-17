@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'ls'
                 sh """
-                    docker run --rm -v /mnt/data/jenkins/workspace/$JOB_NAME:/tmp/$JOB_BASE_NAME python:3.9.1 cd /tmp/$JOB_BASE_NAME && ls -l
+                    docker run --rm -v /mnt/data/jenkins/workspace/$JOB_NAME:/tmp/$JOB_BASE_NAME python:3.9.1 bash -c "cd /tmp/$JOB_BASE_NAME && ls -l"
                 """
                 sh 'echo done'
             }
