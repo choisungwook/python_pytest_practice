@@ -1,11 +1,10 @@
 pipeline {
-    agent { docker { image 'python:3.9.1' } }
+    agent none
     stages {
         stage('Test') {
             steps {
-                sh 'pip install -r requirements.txt'
-                sh 'python -m pytest --cov-report term --cov=./ tests/'
-                stash(name: 'compiled-results', includes: '*.py*')
+                sh 'ls'
+                sh 'docker run --rm -it python:3.9.1 ls'
             }
         }
     }
