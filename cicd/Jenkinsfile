@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'python:3.9.13'
-                    args '--entrypoint=/usr/bin/env'
+                    args '--entrypoint=/usr/bin/env /bin/bash'
                 }
             }
             steps {
