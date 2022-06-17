@@ -4,7 +4,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'ls'
-                sh 'docker run --rm python:3.9.1 ls'
+                sh 'docker run --rm python:3.9.1 "sleep 3"'
+                sh 'done'
             }
         }
     }
