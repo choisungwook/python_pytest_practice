@@ -4,7 +4,9 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'ls'
-                sh 'docker run --rm -v /mnt/data/jenkins/workspace/$JOB_NAME:/tmp/$JOB_BASE_NAME python:3.9.1 ls'
+                sh """
+                    docker run --rm -v /mnt/data/jenkins/workspace/$JOB_NAME:/tmp/$JOB_BASE_NAME python:3.9.1 ls /tmp/$JOB_BASE_NAME'
+                """
                 sh 'done'
             }
         }
