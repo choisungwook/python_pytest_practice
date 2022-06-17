@@ -15,6 +15,7 @@ pipeline {
     }
     post {
         success {
+            sh "ls -l"
             junit './reports/*.xml'
         }
    }
