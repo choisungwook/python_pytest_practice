@@ -1,26 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
-            steps {
-                sh """
-                    docker run --rm \
-                    -v /mnt/data/jenkins/workspace/$JOB_NAME:/tmp/$JOB_BASE_NAME \
-                    python:3.9.1 \
-                    bash -c "cd /tmp/$JOB_BASE_NAME && chmod +x ./run.sh && ./run.sh"
-                """
-                sh 'echo done'
-            }
-        }
-        stage('push sonarqube reports'){
+        stage('Hello') {
             steps {
                 script {
                     def scannerHome = tool 'sonarqube4_7';
                     withSonarQubeEnv('sonar') {
-                      sh 'ls ${scannerHome}/bin/sonar-scanner'
-                      sh '${scannerHome}/bin/sonar-scanner -D"sonar.projectKey=test1" -D"sonar.sources=./"'
+
+                      sh "ls ${scannerHome}/bin/sonar-scanner"
                     }
                 }
+
             }
         }
     }
